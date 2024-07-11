@@ -1,0 +1,161 @@
+body {
+  background-color: rgb(230, 230, 227);
+}
+.head-line-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon-button {
+  padding: 8px 9px 9px;
+  margin-top: 5px;
+}
+
+.icon-button:hover {
+  background-color: rgb(120, 150, 251);
+}
+
+.hide {
+  display: none;
+}
+
+.head-line {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.head-line svg {
+  max-width: 430px;
+  margin: 0px 20px;
+}
+
+.menus {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0 4px;
+  border-top: 1px solid rgb(7, 7, 7);
+  border-bottom: 4px double black;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.menus button {
+  margin: 5px;
+  border: none;
+  background: none;
+}
+
+.menus button:hover {
+  background-color: rgb(243, 73, 223);
+  border-radius: 3px;
+}
+
+.news {
+  display: flex;
+  padding: 1em;
+  border-bottom: 2px solid black;
+}
+
+.news-img {
+  max-width: 100%;
+  max-height: 250px;
+  margin-right: 1em;
+  text-align: center;
+}
+
+.title {
+  font-size: 20pt;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  margin-top: 2em;
+}
+
+.title:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(161, 197, 255);
+  font-weight: 400;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.side-menu-list button {
+  margin: 5px;
+  border: none;
+  background: none;
+  width: 120px;
+}
+
+.side-menu .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  border: none;
+  background: none;
+}
+
+.side-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-menu-list button:hover {
+  background-color: beige;
+  border-radius: 3px;
+}
+
+.search-button {
+  background-color: rgb(91, 188, 244);
+  border: 1px solid rgb(91, 188, 244);
+  color: rgb(255, 255, 255);
+  height: 33px;
+}
+
+.search-button:hover {
+  background-color: rgb(12, 12, 12);
+  border-color: black;
+}
+
+#search-input {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(249, 248, 248);
+  width: 260px;
+  height: 33px;
+}
+
+#input-area {
+  display: none;
+}
+@media screen and (max-width: 63rem) {
+  .hide {
+    display: inline;
+  }
+  .menus {
+    display: none;
+  }
+}
+
+.page-link {
+  color: burlywood;
+}
+
+.col-lg-8 {
+  margin-top: 1em;
+}
