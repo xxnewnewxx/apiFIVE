@@ -95,7 +95,7 @@ const render = () => {
       }</a>
             <p>${
               news.description == null || news.description == ""
-                ? "내용이 없습니다"
+                ? "내용이 없는 기사입니다"
                 : news.description.length > 200
                 ? news.description.substring(0, 200) + "..."
                 : news.description
