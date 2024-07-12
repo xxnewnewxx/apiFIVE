@@ -14,7 +14,7 @@ menus.forEach((menu) =>
 const getNews = async () => {
   try {
     url.searchParams.set("page", page);
-    console.log("Rrr", url);
+    console.log("무슨일이야", url);
     let response = await fetch(url);
     let data = await response.json();
     if (response.status == 200) {
@@ -22,7 +22,8 @@ const getNews = async () => {
       if (data.totalResults == 0) {
         page = 0;
         totalPage = 0;
-        renderPagination();
+        // renderPagination();
+        errorRender();
         throw new Error("일치하는 결과가 없습니다");
       }
 
@@ -40,7 +41,7 @@ const getNews = async () => {
     errorRender(e.message);
     page = 0;
     totalPage = 0;
-    renderPagination();
+    // renderPagination();
   }
 };
 
@@ -109,6 +110,12 @@ const render = () => {
     .join("");
 
   document.getElementById("news-board").innerHTML = resultHTML;
+};
+
+const errorRender = (message) => {
+  document.getElementById(
+    "news-board"
+  ).innerHTML = `<h3 class="text-center alert alert-danger mt-1">${message}</h3>`;
 };
 
 const openNav = () => {
