@@ -22,7 +22,7 @@ const getNews = async () => {
       if (data.totalResults == 0) {
         page = 0;
         totalPage = 0;
-        // renderPagination();
+        // renderPagination(); 추후 페이지네이션 부르기 이어서작업
         errorRender();
         throw new Error("일치하는 결과가 없습니다");
       }
@@ -30,49 +30,49 @@ const getNews = async () => {
       articles = data.articles;
       totalPage = Math.ceil(data.totalResults / pageSize);
       render();
-      renderPagination();
+      //   renderPagination();
     } else {
       page = 0;
       totalPage = 0;
-      renderPagination();
+      //   renderPagination();
       throw new Error(data.message);
     }
   } catch (e) {
     errorRender(e.message);
     page = 0;
     totalPage = 0;
-    // renderPagination();
+    // renderPagination(); 추후 페이지네이션 부르기
   }
 };
 
 ////////////////  뉴스 카테고리 /////////////////////////////////////
-const getLatestNews = () => {
+const getLatestNews = async () => {
   page = 1;
   url = new URL(
     `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&pageSize=${pageSize}`
   );
-  getNews();
+  await getNews();
 };
 
-const getNewsByTopic = (event) => {
+const getNewsByTopic = async (event) => {
   const topic = event.target.textContent.toLowerCase();
 
   page = 1;
   url = new URL(
     `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&pageSize=${pageSize}&category=${topic}`
   );
-  getNews();
+  await getNews();
 };
 
 /////////   검색어로 조회하기 /////////////////
-const getNewsByKeyword = () => {
+const getNewsByKeyword = async () => {
   const keyword = document.getElementById("search-input").value;
 
   page = 1;
   url = new URL(
     `https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?country=kr&pageSize=${pageSize}&q=${keyword}`
   );
-  getNews();
+  await getNews();
 };
 
 document.getElementById("search-input").addEventListener("keydown", (event) => {
