@@ -22,7 +22,7 @@ const getNews = async () => {
       if (data.totalResults == 0) {
         page = 0;
         totalPage = 0;
-        // renderPagination(); 추후 페이지네이션 부르기 이어서작업
+        renderPagination();
         errorRender();
         throw new Error("일치하는 결과가 없습니다");
       }
@@ -30,11 +30,11 @@ const getNews = async () => {
       articles = data.articles;
       totalPage = Math.ceil(data.totalResults / pageSize);
       render();
-      //   renderPagination();
+      renderPagination();
     } else {
       page = 0;
       totalPage = 0;
-      //   renderPagination();
+      renderPagination();
       throw new Error(data.message);
     }
   } catch (e) {
@@ -112,6 +112,49 @@ const render = () => {
   document.getElementById("news-board").innerHTML = resultHTML;
 };
 
+/////////// 페이지 네이션 ////////////////////
+
+const renderPagination = () => {
+  let paginationHTML = ``;
+  let pageGroup = Math.ceil(page / 5);
+  let last = pageGroup * 5;
+  if (last > totalPage) {
+    last = totalPage;
+  }
+  let first = last - 4 <= 0 ? 1 : last - 4;
+  if (first >= 6) {
+    paginationHTML = `<li class="page-item" onclick="pageClick(1)">
+                          <a class="page-link" href='#js-bottom'>&lt;&lt;</a>
+                        </li>
+                        <li class="page-item" onclick="pageClick(${page - 1})">
+                          <a class="page-link" href='#js-bottom'>&lt;</a>
+                        </li>`;
+  }
+  for (let i = first; i <= last; i++) {
+    paginationHTML += `<li class="page-item ${i == page ? "active" : ""}" >
+                          <a class="page-link" href='#js-bottom' onclick="pageClick(${i})" >${i}</a>
+                         </li>`;
+  }
+
+  if (last < totalPage) {
+    paginationHTML += `<li class="page-item" onclick="pageClick(${page + 1})">
+                            <a  class="page-link" href='#js-program-detail-bottom'>&gt;</a>
+                           </li>
+                           <li class="page-item" onclick="pageClick(${totalPage})">
+                            <a class="page-link" href='#js-bottom'>&gt;&gt;</a>
+                           </li>`;
+  }
+
+  document.querySelector(".pagination").innerHTML = paginationHTML;
+};
+
+const pageClick = (pageNum) => {
+  page = pageNum;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  getNews();
+};
+
+/////// 에러 ////////////////////////
 const errorRender = (message) => {
   document.getElementById(
     "news-board"

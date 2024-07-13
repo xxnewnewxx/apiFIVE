@@ -38,7 +38,8 @@ body {
   border-top: 1px solid rgb(7, 7, 7);
   border-bottom: 4px double black;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .menus button {
@@ -152,8 +153,26 @@ body {
   }
 }
 
+.pagenation-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  margin-top: 1em;
+}
+
+.page-item.active .page-link {
+  background-color: rgb(91, 188, 244);
+  color: white;
+  border-color: rgb(91, 188, 244);
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
 .page-link {
-  color: burlywood;
+  color: rgb(91, 188, 244);
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .col-lg-8 {
