@@ -114,6 +114,42 @@ const render = () => {
 
 /////////// 페이지 네이션 ////////////////////
 
+// const renderPagination = () => {
+//   let paginationHTML = ``;
+//   let pageGroup = Math.ceil(page / 5);
+//   let last = pageGroup * 5;
+//   if (last > totalPage) {
+//     last = totalPage;
+//   }
+//   let first = last - 4 <= 0 ? 1 : last - 4;
+//   if (first >= 6) {
+//     paginationHTML = `<li class="page-item" onclick="pageClick(1)">
+//                           <a class="page-link" href='#js-bottom'>&lt;&lt;</a>
+//                         </li>
+//                         <li class="page-item" onclick="pageClick(${page - 1})">
+//                           <a class="page-link" href='#js-bottom'>&lt;</a>
+//                         </li>`;
+//   }
+//   for (let i = first; i <= last; i++) {
+//     paginationHTML += `<li class="page-item ${i == page ? "active" : ""}" >
+//                           <a class="page-link" href='#js-bottom' onclick="pageClick(${i})" >${i}</a>
+//                          </li>`;
+//   }
+
+//   if (last < totalPage) {
+//     paginationHTML += `<li class="page-item" onclick="pageClick(${page + 1})">
+//                             <a  class="page-link" href='#js-program-detail-bottom'>&gt;</a>
+//                            </li>
+//                            <li class="page-item" onclick="pageClick(${totalPage})">
+//                             <a class="page-link" href='#js-bottom'>&gt;&gt;</a>
+//                            </li>`;
+//   }
+
+//   document.querySelector(".pagination").innerHTML = paginationHTML;
+// };
+
+////////////////////////////////////////////////////////////
+
 const renderPagination = () => {
   let paginationHTML = ``;
   let pageGroup = Math.ceil(page / 5);
@@ -122,31 +158,35 @@ const renderPagination = () => {
     last = totalPage;
   }
   let first = last - 4 <= 0 ? 1 : last - 4;
-  if (first >= 6) {
-    paginationHTML = `<li class="page-item" onclick="pageClick(1)">
+
+  if (page > 1) {
+    paginationHTML += `<li class="page-item" onclick="pageClick(1)">
                           <a class="page-link" href='#js-bottom'>&lt;&lt;</a>
-                        </li>
-                        <li class="page-item" onclick="pageClick(${page - 1})">
+                        </li>`;
+    paginationHTML += `<li class="page-item" onclick="pageClick(${page - 1})">
                           <a class="page-link" href='#js-bottom'>&lt;</a>
                         </li>`;
   }
+
   for (let i = first; i <= last; i++) {
     paginationHTML += `<li class="page-item ${i == page ? "active" : ""}" >
                           <a class="page-link" href='#js-bottom' onclick="pageClick(${i})" >${i}</a>
                          </li>`;
   }
 
-  if (last < totalPage) {
+  if (page < totalPage && page >= 2 && page <= 19) {
     paginationHTML += `<li class="page-item" onclick="pageClick(${page + 1})">
-                            <a  class="page-link" href='#js-program-detail-bottom'>&gt;</a>
-                           </li>
-                           <li class="page-item" onclick="pageClick(${totalPage})">
-                            <a class="page-link" href='#js-bottom'>&gt;&gt;</a>
-                           </li>`;
+                          <a class="page-link" href='#js-bottom'>&gt;</a>
+                         </li>`;
+    paginationHTML += `<li class="page-item" onclick="pageClick(${totalPage})">
+                          <a class="page-link" href='#js-bottom'>&gt;&gt;</a>
+                         </li>`;
   }
 
   document.querySelector(".pagination").innerHTML = paginationHTML;
 };
+
+/////////////////////////////////////////////////////////////////////
 
 const pageClick = (pageNum) => {
   page = pageNum;
